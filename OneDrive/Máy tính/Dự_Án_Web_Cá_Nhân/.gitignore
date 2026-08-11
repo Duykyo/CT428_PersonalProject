@@ -1,0 +1,10 @@
+# Bỏ qua toàn bộ thư viện của Node.js
+node_modules/
+chat_server/node_modules/
+
+# Bỏ qua các file cài đặt phần mềm
+*.msi
+*.exe
+
+# Bỏ qua các file cấu hình môi trường (nếu có sau này)
+.env
