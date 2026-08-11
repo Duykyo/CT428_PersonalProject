@@ -73,7 +73,7 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
                     <h4><?php echo htmlspecialchars($row['name']); ?></h4>
                     <div class="product-price"><?php echo number_format($row['price'], 0, ',', '.'); ?> VNĐ</div>
                     
-                    <a href="#" class="btn-view">Xem chi tiết</a>
+                    <a href="product_detail.php?id=<?php echo $row['id']; ?>" class="btn-view">Xem chi tiết</a>
                 </div>
             <?php endwhile; ?>
         </div>
