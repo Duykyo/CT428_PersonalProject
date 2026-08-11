@@ -47,6 +47,8 @@ $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
     <div>
         <?php if ($is_logged_in): ?>
             <span>Xin chào, <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong>!</span>
+            <a href="order_history.php" style="background-color: #ff9800;">Lịch sử đơn hàng</a>
+            <a href="chat.php" style="background-color: #9c27b0;">Phòng Chat</a>
             <?php if ($is_admin): ?>
                 <a href="add_product.php" class="btn-admin">+ Thêm Sản Phẩm</a>
             <?php endif; ?>

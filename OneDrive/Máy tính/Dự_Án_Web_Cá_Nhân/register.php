@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="register.php" method="POST">
         <label for="username">Tên đăng nhập:</label>
         <input type="text" id="username" name="username" required>
+        <div id="username_msg" style="margin-bottom: 10px;"></div>
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
@@ -68,6 +69,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Đăng Ký</button>
     </form>
 </div>
+<script>
+document.getElementById("username").addEventListener("keyup", function() {
+    var username = this.value;
+    var msg_box = document.getElementById("username_msg");
+    
+    // Chỉ bắt đầu gửi request khi người dùng gõ từ 3 ký tự trở lên
+    if (username.length < 3) {
+        msg_box.innerHTML = "";
+        return;
+    }
+    
+    // Khởi tạo đối tượng XMLHttpRequest để giao tiếp bất đồng bộ
+    var xhr = new XMLHttpRequest();
+    
+    // Cấu hình request gửi đến check_username.php qua phương thức GET
+    xhr.open("GET", "check_username.php?username=" + encodeURIComponent(username), true);
+    
+    // Xử lý dữ liệu khi máy chủ phản hồi
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Chèn thẳng kết quả từ PHP vào thẻ div
+            msg_box.innerHTML = xhr.responseText;
+        }
+    };
+    
+    // Gửi request
+    xhr.send();
+});
+</script>
 
 </body>
 </html>
